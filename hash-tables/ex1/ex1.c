@@ -16,19 +16,20 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
       if(weights[i] > hash_table_retrieve(ht, weights[i])) {
         answer->index_1 = weights[i];
         answer->index_2 = hash_table_retrieve(ht, weights[i]); 
-        return answer; 
 
       } else if(weights[i] < hash_table_retrieve(ht, weights[i])) {
         answer->index_1 = hash_table_retrieve(ht, weights[i]);
         answer->index_2 = weights[i];
-        return answer;
         }
 
     } else {
+      destroy_hash_table(ht); 
       return NULL; 
-    } 
+    }
+  } 
   
-  }   
+  destroy_hash_table(ht); 
+  return answer; 
 }
 
 //   for(int i = 0; i < length; i++) {
